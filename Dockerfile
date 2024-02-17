@@ -11,4 +11,4 @@ RUN pip --trusted-host pypi.python.org install --no-cache-dir -r requirements.tx
 
 COPY /*.py /usr/src/app/
 
-CMD [ "python", "." ]
+CMD [ "python", "-u", "." ]
