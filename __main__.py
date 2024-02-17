@@ -57,7 +57,7 @@ def handle(client: RTMClient, event: dict):
     except google_trans_new.google_new_transError:
         print(f'ERR: {sys.exc_info()}')
         response = 'Fout bij vertalen'
-    except:
+    except: # pylint: disable=bare-except
         print(f'ERR: {sys.exc_info()}')
         response = f'Er is iets foutgegaan: {sys.exc_info()[0]}'
 
