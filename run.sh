@@ -1,3 +1,4 @@
+cd /home/peter/dev/slackbot
 . ./setslackenv.sh
 docker stop slackbot
 docker rm -f slackbot
