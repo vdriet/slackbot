@@ -49,7 +49,7 @@ def handle(client: RTMClient, event: dict):
     if firstword == EXAMPLE_COMMAND:
       print(message)
       response = message_help(message)
-    elif firstword = 'datum':
+    elif firstword == 'datum' :
       response = message_datum(message)
     else :
       response = 'other'
