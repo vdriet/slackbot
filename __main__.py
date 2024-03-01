@@ -2,10 +2,8 @@
 import os
 import sys
 from slack_sdk.rtm_v2 import RTMClient
-#from google_trans_new import google_translator, google_trans_new
 
 BOT_ID = 'U4QCBT18A'
-# constants
 AT_BOT = f'<@{BOT_ID}>'
 EXAMPLE_COMMAND = 'help'
 
@@ -24,6 +22,11 @@ def message_help(extra):
       "• *help*: deze informatie\n" + \
       ""
   return response
+
+
+def message_datum(extra):
+  """ actie bij message datum """
+  return f'verwerk de datum {extra}'
 
 
 @rtm.on("message")
@@ -46,25 +49,10 @@ def handle(client: RTMClient, event: dict):
     if firstword == EXAMPLE_COMMAND:
       print(message)
       response = message_help(message)
+    elif firstword = 'datum':
+      response = message_datum(message)
     else :
       response = 'other'
-      #filelist = event.get('files', None)
-      #if filelist is None :
-      #  response = 'Type "help" voor uitleg'
-      #else :
-      #  for file in filelist :
-      #    ftype = file['filetype']
-      #    if ftype != 'text' :
-      #      response = 'Alleen bestanden met tekst kunnen worden vertaald'
-      #    else :
-      #      text = file['preview']
-      #      gtrans = google_translator()
-      #      translation = gtrans.translate(text, lang_src ='en', lang_tgt='nl')
-            # print(trans)
-      #      response = f'vertaling: [{translation}]'
-#  except google_trans_new.google_new_transError:
-#    print(f'ERR: {sys.exc_info()}')
-#    response = 'Fout bij vertalen'
   except: # pylint: disable=bare-except
     print(f'ERR: {sys.exc_info()}')
     response = f'Er is iets foutgegaan: {sys.exc_info()[0]}'
