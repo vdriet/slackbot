@@ -30,7 +30,7 @@ def message_datum(extra):
   if len(extra) == 0:
     return f'Vandaag is het {datetime.now()}'
   try:
-    inputdatum = datetime.strptime(extra, '%d-%m-%Y')
+    inputdatum = datetime.strptime(extra[0], '%d-%m-%Y')
   except: # pylint: disable=bare-except
     return 'Gebruik: datum dd-mm-jjjj'
   vandaag = datetime.now()
