@@ -1,5 +1,5 @@
 """ Bot voor slack """
-from datetime import datetime
+from datetime import datetime, date
 import os
 import sys
 from slack_sdk.rtm_v2 import RTMClient
@@ -28,13 +28,13 @@ def message_help(extra):
 def message_datum(extra):
   """ actie bij message: datum """
   if len(extra) == 0:
-    return f'Vandaag is het {datetime.now()}'
+    return f'Vandaag is het {date.today()}'
   try:
-    inputdatum = datetime.strptime(extra[0], '%d-%m-%Y')
+    inputdatum = datetime.strptime(extra[0], '%d-%m-%Y').date()
   except: # pylint: disable=bare-except
     return 'Gebruik: datum dd-mm-jjjj'
-  vandaag = datetime.now()
-  verschil = (vandaag - inputdatum).days
+  vandaag = date.today()
+  verschil = vandaag - inputdatum
   return f'{extra} is {verschil} dagen geleden'
 
 
