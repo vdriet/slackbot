@@ -29,10 +29,16 @@ def message_datum(extra):
   """ actie bij message datum """
   try:
     inputdatum = datetime.strptime(extra, '%d-%m-%Y')
-  except ValueError:
-    return 'Gebruik: datum dd-mm-jjjj'
-  vandaag = datetime.now()
-  verschil = (vandaag - inputdatum).days
+  except: # pylint: disable=bare-except
+    return 'Gebruik 1: datum dd-mm-jjjj'
+  try:
+    vandaag = datetime.now()
+  except: # pylint: disable=bare-except
+    return 'Gebruik 2: datum dd-mm-jjjj'
+  try:
+    verschil = (vandaag - inputdatum).days
+  except: # pylint: disable=bare-except
+    return 'Gebruik 3: datum dd-mm-jjjj'
   return f'{extra} is {verschil} dagen geleden'
 
 
