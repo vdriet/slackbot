@@ -13,7 +13,7 @@ slack_id = os.environ['SLACK_ID_RASPBOT']
 rtm = RTMClient(token=slack_id)
 
 def message_help(extra):
-  """ actie bij message help """
+  """ actie bij message: help """
   if len(extra) > 0:
     print('join')
     response = ' '.join(extra)
@@ -26,7 +26,7 @@ def message_help(extra):
 
 
 def message_datum(extra):
-  """ actie bij message datum """
+  """ actie bij message: datum """
   if len(extra) == 0:
     return f'Vandaag is het {datetime.now()}'
   try:
