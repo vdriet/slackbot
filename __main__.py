@@ -1,4 +1,5 @@
 """ Bot voor slack """
+from datetime import datetime
 import os
 import sys
 from slack_sdk.rtm_v2 import RTMClient
@@ -26,7 +27,13 @@ def message_help(extra):
 
 def message_datum(extra):
   """ actie bij message datum """
-  return f'verwerk de datum {extra}'
+  try:
+    inputdatum = datetime.strptime(extra, '%d-%m-%Y')
+  except ValueError:
+    return 'Gebruik: datum dd-mm-jjjj'
+  vandaag = datetime.now()
+  verschil = (vandaag - inputdatum).days
+  return f'{extra} is {verschil} dagen geleden'
 
 
 @rtm.on("message")
