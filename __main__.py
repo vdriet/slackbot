@@ -34,8 +34,8 @@ def message_datum(extra):
   except: # pylint: disable=bare-except
     return 'Gebruik: datum dd-mm-jjjj'
   vandaag = date.today()
-  verschil = vandaag - inputdatum
-  return f'{extra} is {verschil} dagen geleden'
+  verschil = (vandaag - inputdatum).days
+  return f'{inputdatum} is {verschil} dagen geleden'
 
 
 @rtm.on("message")
