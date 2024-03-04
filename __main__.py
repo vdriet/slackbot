@@ -31,8 +31,8 @@ def message_datum(extra):
     return f'Vandaag is het {date.today()}'
   try:
     inputdatum = datetime.strptime(extra[0], '%Y-%m-%d').date()
-  except: # pylint: disable=bare-except
-    return 'Gebruik: datum dd-mm-jjjj'
+  except ValueError as ve:
+    return f'Gebruik: datum dd-mm-jjjj\n\nError: {ve}'
   vandaag = date.today()
   verschil = (vandaag - inputdatum).days
   return f'{inputdatum} is {verschil} dagen geleden'
