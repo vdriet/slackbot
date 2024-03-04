@@ -1,5 +1,5 @@
 """ Bot voor slack """
-from datetime import datetime, date
+from datetime import datetime, date, timedelta
 import os
 import sys
 from slack_sdk.rtm_v2 import RTMClient
@@ -57,7 +57,7 @@ def message_datum(extra):
   if tweededatum is None and tweedewaarde is None:
     return returntekst
   if tweededatum is None:
-    nieuwedatum = inputdatum + datetime.timedelta(tweedewaarde)
+    nieuwedatum = inputdatum + timedelta(tweedewaarde)
     return f'{returntekst}\n{tweedewaarde} dagen na {inputdatum} is {nieuwedatum}'
   tweedeverschil = (tweededatum - inputdatum).days
   return f'{returntekst}\n{tweededatum} is {tweedeverschil} dagen na {inputdatum}'
