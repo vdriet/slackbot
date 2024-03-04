@@ -57,7 +57,7 @@ def message_datum(extra):
   if tweededatum is None and tweedewaarde is None:
     return returntekst
   if tweededatum is None:
-    nieuwedatum = inputdatum + tweedewaarde
+    nieuwedatum = inputdatum + datetime.timedelta(tweedewaarde)
     return f'{returntekst}\n{tweedewaarde} dagen na {inputdatum} is {nieuwedatum}'
   tweedeverschil = (tweededatum - inputdatum).days
   return f'{returntekst}\n{tweededatum} is {tweedeverschil} dagen na {inputdatum}'
