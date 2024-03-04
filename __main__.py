@@ -25,17 +25,42 @@ def message_help(extra):
   return response
 
 
+def get_datum(tekst):
+  """ mwak datum van tekst in juiste formaat """
+  return datetime.strptime(tekst, '%Y-%m-%d').date()
+
+
 def message_datum(extra):
   """ actie bij message: datum """
+  inputdatum = None
   if len(extra) == 0:
     return f'Vandaag is het {date.today()}'
   try:
-    inputdatum = datetime.strptime(extra[0], '%Y-%m-%d').date()
-  except ValueError as errormessage:
-    return f'Gebruik: datum dd-mm-jjjj\n\nError: {errormessage}'
+    inputdatum = get_datum(extra[0])
+  except ValueError as datumerror:
+    fouttekst = datumerror
+    return f'Gebruik: datum jjjj-mm-dd [jjjj-mm-dd|nnnnn]\n\nError: {fouttekst}'
   vandaag = date.today()
   verschil = (vandaag - inputdatum).days
-  return f'{inputdatum} is {verschil} dagen geleden'
+
+  tweededatum = None
+  tweedewaarde = None
+  if len(extra) > 1:
+    try:
+      tweededatum = get_datum(extra[1])
+    except ValueError as datumerror:
+      try:
+        tweedewaarde = int(extra[1])
+      except ValueError as getalerror:
+        return f'Gebruik: datum jjjj-mm-dd [jjjj-mm-dd|nnnnn]\n\nError: {datumerror}\n{getalerror}'
+  returntekst = f'{inputdatum} is {verschil} dagen geleden'
+  if tweededatum is None and tweedewaarde is None:
+    return returntekst
+  if tweededatum is None:
+    nieuwedatum = inputdatum + tweedewaarde
+    return f'{returntekst}\n{tweedewaarde} dagen na {inputdatum} is {nieuwedatum}'
+  tweedeverschil = (tweededatum - inputdatum).days
+  return f'{returntekst}\n{tweededatum} is {tweedeverschil} dagen na {inputdatum}'
 
 
 @rtm.on("message")
