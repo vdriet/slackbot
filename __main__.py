@@ -27,7 +27,7 @@ def message_help(extra):
       "* *datum <datum>*: aantal dagen vanaf <datum>\n" + \
       "* *datum <datum> <datum>*: aantal dagen tussen beide datums\n" + \
       "* *datum <datum> <aantal>*: datum <aantal> dagen na <datum>\n" + \
-      "* *mail <naam>: ongelezen berichten van deze mailbox\n" + \
+      "* *mail <naam>*: ongelezen berichten van deze mailbox\n" + \
       "\n" + \
       ""
   return response
