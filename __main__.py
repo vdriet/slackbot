@@ -2,6 +2,9 @@
 from datetime import datetime, date, timedelta
 import os
 import sys
+
+from imap_tools import MailBox, AND
+from pytz import timezone
 from slack_sdk.rtm_v2 import RTMClient
 
 BOT_ID = 'U4QCBT18A'
@@ -63,6 +66,30 @@ def message_datum(extra):
   return f'{returntekst}\n{tweededatum} is {tweedeverschil} dagen na {inputdatum}'
 
 
+def message_mail(extra):
+  """ actie bij message: datum """
+  if len(extra) != 1:
+    return 'Gebruik mail <prefix>'
+  prefix = extra[0].upper()
+  try:
+    mailuser = os.environ[f'MAIL_USER_{prefix}']
+    mailpass = os.environ[f'MAIL_PASS_{prefix}']
+    mailhost = os.environ['MAIL_HOST']
+  except KeyError as keyerrormessage:
+    return f'Geen gegevens gevonden voor {prefix}\n{keyerrormessage}'
+  returntekst = 'Deze ongelezen mails:\n'
+  with MailBox(mailhost).login(mailuser, mailpass) as mailbox:
+    ongelezenmail = False
+    for msg in mailbox.fetch(AND(seen=False), mark_seen=False):
+      received = datetime.strftime(msg.date.astimezone(timezone('Europe/Amsterdam'))
+                                 , '%Y-%m-%d %H:%M:%S')
+      returntekst = f'{returntekst} {received} {msg.from_} {msg.subject}'
+      ongelezenmail = True
+  if ongelezenmail:
+    return returntekst
+  return 'Geen ongelezen mail'
+
+
 @rtm.on("message")
 def handle(client: RTMClient, event: dict):
   """
@@ -85,6 +112,8 @@ def handle(client: RTMClient, event: dict):
       response = message_help(message)
     elif firstword == 'datum' :
       response = message_datum(message)
+    elif firstword == 'mail' :
+      response = message_mail(message)
     else :
       response = 'other'
   except: # pylint: disable=bare-except
