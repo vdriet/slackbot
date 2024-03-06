@@ -25,10 +25,10 @@ def message_help(extra):
     response = "Dit zijn de opdrachten die deze bot kent\n" + \
       "• *help*: deze informatie\n" + \
       "* *datum <datum>*: aantal dagen vanaf <datum>\n" + \
-      "* *datum <datum> <datum>: aantal dagen tussen beide datums" + \
-      "* *datum <datum> <aantal>: datum <aantal> dagen na <datum>" + \
-      "* *mail <naam>: ongelezen berichten van deze mailbox" + \
-      "" + \
+      "* *datum <datum> <datum>*: aantal dagen tussen beide datums\n" + \
+      "* *datum <datum> <aantal>*: datum <aantal> dagen na <datum>\n" + \
+      "* *mail <naam>: ongelezen berichten van deze mailbox\n" + \
+      "\n" + \
       ""
   return response
 
