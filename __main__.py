@@ -70,13 +70,14 @@ def message_mail(extra):
   """ actie bij message: datum """
   if len(extra) != 1:
     return 'Gebruik mail <prefix>'
-  prefix = extra[0].upper()
+  inputname = extra[0]
+  prefix = inputname.upper()
   try:
     mailuser = os.environ[f'MAIL_USER_{prefix}']
     mailpass = os.environ[f'MAIL_PASS_{prefix}']
     mailhost = os.environ['MAIL_HOST']
   except KeyError as keyerrormessage:
-    return f'Geen gegevens gevonden voor {prefix}\n{keyerrormessage}'
+    return f'Geen gegevens gevonden voor {inputname}\n{keyerrormessage}'
   returntekst = 'Deze ongelezen mails:\n'
   with MailBox(mailhost).login(mailuser, mailpass) as mailbox:
     ongelezenmail = False
