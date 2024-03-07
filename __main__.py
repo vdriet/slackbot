@@ -28,6 +28,7 @@ def message_help(extra):
       "* *datum <datum> <datum>*: aantal dagen tussen beide datums\n" + \
       "* *datum <datum> <aantal>*: datum <aantal> dagen na <datum>\n" + \
       "* *mail <naam>*: ongelezen berichten van deze mailbox\n" + \
+      "* *mail alles*: aantal ongelezen berichten van alle bekende mailboxen\n" + \
       "\n" + \
       ""
   return response
@@ -76,6 +77,8 @@ def message_mail(extra):
   if len(extra) != 1:
     return 'Gebruik mail <prefix>'
   inputname = extra[0]
+  if inputname == 'alles':
+    return 'ToDo'
   prefix = inputname.upper()
   try:
     mailuser = os.environ[f'MAIL_USER_{prefix}']
