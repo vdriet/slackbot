@@ -1,1 +1,1 @@
-cp slackbot /etc/cron.d/
+cp -u slackbot /etc/cron.d/
