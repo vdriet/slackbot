@@ -1,4 +1,3 @@
-cd /home/peter/dev/slackbot
 docker stop slackbot
 docker rm -f slackbot
 docker run \
