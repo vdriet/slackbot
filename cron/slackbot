@@ -1,1 +1,0 @@
-@reboot root [ -x /opt/slackbot/run.sh ] && /opt/slackbot/run.sh >> /home/peter/logs/cron_slackbot.log 2>&1
