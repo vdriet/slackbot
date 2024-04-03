@@ -2,7 +2,7 @@ certifi==2024.2.2
 charset-normalizer==3.3.2
 google-trans-new==1.1.9
 idna==3.6
-imap-tools==1.5.0
+imap-tools==1.6.0
 pytz==2024.1
 requests==2.31.0
 six==1.16.0
