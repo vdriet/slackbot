@@ -4,7 +4,7 @@ google-trans-new==1.1.9
 idna==3.7
 imap-tools==1.6.0
 pytz==2024.1
-requests==2.31.0
+requests==2.32.1
 six==1.16.0
 slack_sdk==3.27.2
 urllib3==2.2.1
