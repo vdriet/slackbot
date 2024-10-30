@@ -6,5 +6,5 @@ imap-tools==1.7.3
 pytz==2024.2
 requests==2.32.3
 six==1.16.0
-slack_sdk==3.33.2
+slack_sdk==3.33.3
 urllib3==2.2.3
