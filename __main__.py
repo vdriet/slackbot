@@ -18,10 +18,8 @@ rtm = RTMClient(token=slack_id)
 def message_help(extra):
   """ actie bij message: help """
   if len(extra) > 0:
-    print('join')
     response = ' '.join(extra)
   else:
-    print('default')
     response = "Dit zijn de opdrachten die deze bot kent\n" + \
       "• *help*: deze informatie\n" + \
       "* *datum <datum>*: aantal dagen vanaf <datum>\n" + \
@@ -117,7 +115,6 @@ def handle(client: RTMClient, event: dict):
     firstword = splitmessage[0]
     message = splitmessage[1:]
     if firstword == EXAMPLE_COMMAND:
-      print(message)
       response = message_help(message)
     elif firstword == 'datum' :
       response = message_datum(message)
