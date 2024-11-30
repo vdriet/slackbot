@@ -26,16 +26,3 @@ Issues = "https://github.com/vdriet/slackbot/issues"
 addopts = [
     "--import-mode=importlib",
 ]
-
-dependencies = [
-  "certifi==2024.8.30",
-  "charset-normalizer==3.4.0",
-  "idna==3.10",
-  "imap-tools==1.7.4",
-  "pytest==8.3.3",
-  "pytz==2024.2",
-  "requests==2.32.3",
-  "six==1.16.0",
-  "slack_sdk==3.33.4",
-  "urllib3==2.2.3",
-]

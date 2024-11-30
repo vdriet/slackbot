@@ -2,5 +2,6 @@
 set -e
 pip install -r requirements.txt
 pip list --outdated
-pylint src/*.py
+pylint slackbot/*.py
+pytest
 docker build --tag slackbot .

@@ -9,6 +9,6 @@ COPY requirements.txt /usr/src/app/
 RUN pip install --upgrade pip
 RUN pip --trusted-host pypi.python.org install --no-cache-dir -r requirements.txt
 
-COPY /src/*.py /usr/src/app/
+COPY /slackbot/*.py /usr/src/app/
 
 CMD [ "python", "-u", "slackbot.py" ]
