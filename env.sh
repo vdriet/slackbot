@@ -1,1 +1,1 @@
-. ./bin/activate
+. ./slackbot_venv/bin/activate
