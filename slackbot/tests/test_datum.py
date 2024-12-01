@@ -1,6 +1,4 @@
 """ testen voor de slackbot datumfuncties """
-import unittest
-from unittest.mock import patch
 import pytest
 
 @pytest.fixture
@@ -18,7 +16,6 @@ def test_get_datum(mock_env_slack_id):
 
 def test_message_datum_leeg(mock_env_slack_id):
   from slackbot import slackbot
-  from datetime import date
 
   invoer = ''
   verwachting = f'Vandaag is het'
@@ -27,7 +24,6 @@ def test_message_datum_leeg(mock_env_slack_id):
 
 def test_message_datum_fout(mock_env_slack_id):
   from slackbot import slackbot
-  from datetime import date
 
   invoer = ['01-12-2024'] # fout formaat
   verwachting = 'Gebruik: datum jjjj-mm-dd [jjjj-mm-dd|nnnnn]'
@@ -36,7 +32,6 @@ def test_message_datum_fout(mock_env_slack_id):
 
 def test_message_datum_enkel(mock_env_slack_id):
   from slackbot import slackbot
-  from datetime import date
 
   invoer = ['2024-11-29']
   verwachtingbegin = '2024-11-29 is '

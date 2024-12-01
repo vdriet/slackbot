@@ -39,7 +39,6 @@ def get_datum(tekst):
 
 def message_datum(extra):
   """ actie bij message: datum """
-  inputdatum = None
   if len(extra) == 0:
     return f'Vandaag is het {date.today()}'
   try:
