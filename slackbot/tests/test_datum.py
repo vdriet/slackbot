@@ -39,3 +39,23 @@ def test_message_datum_enkel(mock_env_slack_id):
   resultaat = slackbot.message_datum(invoer)
   assert resultaat.startswith(verwachtingbegin)
   assert resultaat.endswith(verwachtingeinde)
+
+def test_message_datum_dubbel(mock_env_slack_id):
+  from slackbot import slackbot
+
+  invoer = ['2005-04-03', '2013-12-11']
+  verwachtingbegin = f'{invoer[0]} is '
+  verwachtingeinde = f'{invoer[1]} is 3174 dagen na {invoer[0]}'
+  resultaat = slackbot.message_datum(invoer)
+  assert resultaat.startswith(verwachtingbegin)
+  assert resultaat.endswith(verwachtingeinde)
+
+def test_message_datum_getal(mock_env_slack_id):
+  from slackbot import slackbot
+
+  invoer = ['2005-04-03', '3174']
+  verwachtingbegin = f'{invoer[0]} is '
+  verwachtingeinde = f'{invoer[1]} dagen na {invoer[0]} is 2013-12-11'
+  resultaat = slackbot.message_datum(invoer)
+  assert resultaat.startswith(verwachtingbegin)
+  assert resultaat.endswith(verwachtingeinde)
