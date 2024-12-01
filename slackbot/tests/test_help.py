@@ -1,9 +1,6 @@
-""" testen voor de slackbot """
+""" testen voor de slackbot helpfunctie """
 import unittest
-from unittest.mock import patch, MagicMock
 import pytest
-
-import os
 
 @pytest.fixture
 def mock_env_slack_id(monkeypatch):
@@ -13,19 +10,19 @@ def mock_env_slack_id(monkeypatch):
 def test_help_leeg(mock_env_slack_id):
   from slackbot import slackbot
 
-  response = slackbot.message_help([])
-  assert len(response) > 300
+  resultaat = slackbot.message_help([])
+  assert len(resultaat) > 300
 
 def test_help_enkel(mock_env_slack_id):
   from slackbot import slackbot
 
   tekst = 'enkel'
-  response = slackbot.message_help([tekst])
-  assert response == tekst
+  resultaat = slackbot.message_help([tekst])
+  assert resultaat == tekst
 
 def test_help_meer(mock_env_slack_id):
   from slackbot import slackbot
 
-  input = ['meer', 'tekst', 'samen']
-  response = slackbot.message_help(input)
-  assert response == 'meer tekst samen'
+  invoer = ['meer', 'tekst', 'samen']
+  resultaat = slackbot.message_help(invoer)
+  assert resultaat == 'meer tekst samen'
