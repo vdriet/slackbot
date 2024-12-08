@@ -1,7 +1,8 @@
 #!/bin/bash
 set -e
+export PYTHONPATH=.
 pip install -r requirements.txt
 pip list --outdated
-pylint slackbot/*.py
+pylint *.py
 pytest
 docker build --tag slackbot .
