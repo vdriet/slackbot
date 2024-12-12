@@ -4,7 +4,7 @@ charset-normalizer==3.4.0
 dill==0.3.9
 google-trans-new==1.1.9
 idna==3.10
-imap-tools==1.7.4
+imap-tools==1.8.0
 iniconfig==2.0.0
 isort==5.13.2
 mccabe==0.7.0
