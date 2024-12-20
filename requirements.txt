@@ -18,7 +18,7 @@ pytz==2024.2
 requests==2.32.3
 setuptools==75.6.0
 six==1.17.0
-slack_sdk==3.33.5
+slack_sdk==3.34.0
 tomlkit==0.13.2
 urllib3==2.2.3
 wheel==0.45.1
