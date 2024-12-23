@@ -1,11 +1,14 @@
 """ testen voor de slackbot datumfuncties """
+
 import pytest
 
+
 @pytest.fixture
-def mock_env_slack_id(monkeypatch):
+def mock_environment(monkeypatch):
   monkeypatch.setenv("SLACK_ID_RASPBOT", "DUMMY")
 
-def test_get_datum(mock_env_slack_id):
+
+def test_get_datum(mock_environment):
   import slackbot
   from datetime import date
 
@@ -14,7 +17,8 @@ def test_get_datum(mock_env_slack_id):
   resultaat = slackbot.get_datum(invoer)
   assert resultaat == verwachting
 
-def test_message_datum_leeg(mock_env_slack_id):
+
+def test_message_datum_leeg(mock_environment):
   import slackbot
 
   invoer = ''
@@ -22,15 +26,17 @@ def test_message_datum_leeg(mock_env_slack_id):
   resultaat = slackbot.message_datum(invoer)
   assert resultaat[:len(verwachting)] == verwachting
 
-def test_message_datum_fout(mock_env_slack_id):
+
+def test_message_datum_fout(mock_environment):
   import slackbot
 
-  invoer = ['01-12-2024'] # fout formaat
+  invoer = ['01-12-2024']  # fout formaat
   verwachting = 'Gebruik: datum jjjj-mm-dd [jjjj-mm-dd|nnnnn]'
   resultaat = slackbot.message_datum(invoer)
   assert resultaat[:len(verwachting)] == verwachting
 
-def test_message_datum_enkel(mock_env_slack_id):
+
+def test_message_datum_enkel(mock_environment):
   import slackbot
 
   invoer = ['2024-11-29']
@@ -40,7 +46,8 @@ def test_message_datum_enkel(mock_env_slack_id):
   assert resultaat.startswith(verwachtingbegin)
   assert resultaat.endswith(verwachtingeinde)
 
-def test_message_datum_dubbel(mock_env_slack_id):
+
+def test_message_datum_dubbel(mock_environment):
   import slackbot
 
   invoer = ['2005-04-03', '2013-12-11']
@@ -50,7 +57,8 @@ def test_message_datum_dubbel(mock_env_slack_id):
   assert resultaat.startswith(verwachtingbegin)
   assert resultaat.endswith(verwachtingeinde)
 
-def test_message_datum_getal(mock_env_slack_id):
+
+def test_message_datum_getal(mock_environment):
   import slackbot
 
   invoer = ['2005-04-03', '3174']
@@ -59,3 +67,14 @@ def test_message_datum_getal(mock_env_slack_id):
   resultaat = slackbot.message_datum(invoer)
   assert resultaat.startswith(verwachtingbegin)
   assert resultaat.endswith(verwachtingeinde)
+
+
+def test_message_datum_datum_noch_getal(mock_environment):
+  import slackbot
+
+  invoer = ['2005-04-03', 'abc']
+  verwachting = "Gebruik: datum jjjj-mm-dd [jjjj-mm-dd|nnnnn]\n\n" + \
+                "Error: time data 'abc' does not match format '%Y-%m-%d'\n" + \
+                "invalid literal for int() with base 10: 'abc'"
+  resultaat = slackbot.message_datum(invoer)
+  assert resultaat == verwachting

@@ -4,5 +4,6 @@ export PYTHONPATH=.
 pip install -r requirements.txt
 pip list --outdated
 pylint *.py
-pytest
+coverage run -m pytest
+coverage report -m
 docker build --tag slackbot .

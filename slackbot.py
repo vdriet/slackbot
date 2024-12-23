@@ -97,7 +97,7 @@ def message_mail(extra):
 
 
 @rtm.on("message")
-def handle(client: RTMClient, event: dict):
+def handle(client: RTMClient, event: dict): # pragma: no cover
   """
     Receives commands directed at the bot and determines if they
     are valid commands. If so, then acts on the commands. If not,
@@ -131,5 +131,5 @@ def handle(client: RTMClient, event: dict):
     thread_ts=thread_ts
   )
 
-if __name__ == "__main__":
+if __name__ == "__main__": # pragma: no cover
   rtm.start()
