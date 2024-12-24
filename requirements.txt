@@ -1,4 +1,4 @@
-astroid==3.3.7
+astroid==3.3.8
 certifi==2024.12.14
 charset-normalizer==3.4.0
 coverage==7.6.9
