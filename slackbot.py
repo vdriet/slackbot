@@ -15,20 +15,21 @@ EXAMPLE_COMMAND = 'help'
 slack_id = os.environ['SLACK_ID_RASPBOT']
 rtm = RTMClient(token=slack_id)
 
+
 def message_help(extra):
   """ actie bij message: help """
   if len(extra) > 0:
     response = ' '.join(extra)
   else:
     response = "Dit zijn de opdrachten die deze bot kent\n" + \
-      "• *help*: deze informatie\n" + \
-      "* *datum <datum>*: aantal dagen vanaf <datum>\n" + \
-      "* *datum <datum> <datum>*: aantal dagen tussen beide datums\n" + \
-      "* *datum <datum> <aantal>*: datum <aantal> dagen na <datum>\n" + \
-      "* *mail <naam>*: ongelezen berichten van deze mailbox\n" + \
-      "* *mail alles*: aantal ongelezen berichten van alle bekende mailboxen\n" + \
-      "\n" + \
-      ""
+               "• *help*: deze informatie\n" + \
+               "* *datum <datum>*: aantal dagen vanaf <datum>\n" + \
+               "* *datum <datum> <datum>*: aantal dagen tussen beide datums\n" + \
+               "* *datum <datum> <aantal>*: datum <aantal> dagen na <datum>\n" + \
+               "* *mail <naam>*: ongelezen berichten van deze mailbox\n" + \
+               "* *mail alles*: aantal ongelezen berichten van alle bekende mailboxen\n" + \
+               "\n" + \
+               ""
   return response
 
 
@@ -88,7 +89,7 @@ def message_mail(extra):
     ongelezenmail = False
     for msg in mailbox.fetch(AND(seen=False), mark_seen=False):
       received = datetime.strftime(msg.date.astimezone(timezone('Europe/Amsterdam'))
-                                 , '%Y-%m-%d %H:%M:%S')
+                                   , '%Y-%m-%d %H:%M:%S')
       returntekst = f'{returntekst} {received} {msg.from_} {msg.subject}'
       ongelezenmail = True
   if ongelezenmail:
@@ -97,7 +98,7 @@ def message_mail(extra):
 
 
 @rtm.on("message")
-def handle(client: RTMClient, event: dict): # pragma: no cover
+def handle(client: RTMClient, event: dict):
   """
     Receives commands directed at the bot and determines if they
     are valid commands. If so, then acts on the commands. If not,
@@ -115,13 +116,13 @@ def handle(client: RTMClient, event: dict): # pragma: no cover
     message = splitmessage[1:]
     if firstword == EXAMPLE_COMMAND:
       response = message_help(message)
-    elif firstword == 'datum' :
+    elif firstword == 'datum':
       response = message_datum(message)
-    elif firstword == 'mail' :
+    elif firstword == 'mail':
       response = message_mail(message)
-    else :
+    else:
       response = 'other'
-  except: # pylint: disable=bare-except
+  except:  # pylint: disable=bare-except
     print(f'ERR: {sys.exc_info()}')
     response = f'Er is iets foutgegaan: {sys.exc_info()[0]}'
 
@@ -131,5 +132,6 @@ def handle(client: RTMClient, event: dict): # pragma: no cover
     thread_ts=thread_ts
   )
 
-if __name__ == "__main__": # pragma: no cover
+
+if __name__ == "__main__":
   rtm.start()
