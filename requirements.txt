@@ -1,7 +1,7 @@
 coverage==7.6.10
 imap-tools==1.9.1
 pip==25.0
-pylint==3.3.3
+pylint==3.3.4
 pytest==8.3.4
 pytz==2024.2
 setuptools==75.8.0
