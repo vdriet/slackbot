@@ -3,6 +3,6 @@ imap-tools==1.9.1
 pip==25.0
 pylint==3.3.4
 pytest==8.3.4
-pytz==2024.2
+pytz==2025.1
 setuptools==75.8.0
 slack_sdk==3.34.0
