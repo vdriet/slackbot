@@ -1,14 +1,15 @@
 """ testen voor de slackbot datumfuncties """
-
 import pytest
-
+from unittest.mock import patch
 
 @pytest.fixture
 def mock_environment(monkeypatch):
-  monkeypatch.setenv("SLACK_ID_RASPBOT", "DUMMY")
+  monkeypatch.setenv("SLACK_APP_TOKEN", "DUMMY")
+  monkeypatch.setenv("SLACK_BOT_TOKEN", "DUMMY")
 
 
-def test_get_datum(mock_environment):
+@patch('slack_bolt.App')
+def test_get_datum(mock_app, mock_environment):
   import slackbot
   from datetime import date
 

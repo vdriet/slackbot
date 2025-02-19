@@ -5,16 +5,15 @@ import sys
 
 from imap_tools import MailBox, AND
 from pytz import timezone
-from slack_sdk.rtm_v2 import RTMClient
+from slack_bolt import App
+from slack_bolt.adapter.socket_mode import SocketModeHandler
 
-BOT_ID = 'U4QCBT18A'
-AT_BOT = f'<@{BOT_ID}>'
 EXAMPLE_COMMAND = 'help'
 
 # instantiate Slack
-slack_id = os.environ['SLACK_ID_RASPBOT']
-rtm = RTMClient(token=slack_id)
-
+app = App(
+    token=os.environ.get('SLACK_BOT_TOKEN')
+)
 
 def message_help(extra):
   """ actie bij message: help """
@@ -96,20 +95,16 @@ def message_mail(extra):
     return returntekst
   return 'Geen ongelezen mail'
 
-
-@rtm.on("message")
-def handle(client: RTMClient, event: dict):
+@app.message('')
+def handle_message(message, say):
   """
     Receives commands directed at the bot and determines if they
     are valid commands. If so, then acts on the commands. If not,
     returns back what it needs for clarification.
   """
-  web_client = client.web_client
-  command = event['text']
-  channel_id = event['channel']
-  thread_ts = event['ts']
-  if event['user'] != 'U4HFYBQMU':
+  if message['user'] != 'U4HFYBQMU': # peter
     return
+  command = message['text']
   try:
     splitmessage = command.split(' ')
     firstword = splitmessage[0]
@@ -126,12 +121,7 @@ def handle(client: RTMClient, event: dict):
     print(f'ERR: {sys.exc_info()}')
     response = f'Er is iets foutgegaan: {sys.exc_info()[0]}'
 
-  web_client.chat_postMessage(
-    channel=channel_id,
-    text=response,
-    thread_ts=thread_ts
-  )
-
+  say(response)
 
 if __name__ == "__main__":
-  rtm.start()
+  SocketModeHandler(app, os.environ['SLACK_APP_TOKEN']).start()
