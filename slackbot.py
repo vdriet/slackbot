@@ -70,7 +70,7 @@ def message_datum(extra):
 
 
 def message_mail(extra):
-  """ actie bij message: datum """
+  """ actie bij message: mail """
   if len(extra) != 1:
     return 'Gebruik mail <prefix>'
   inputname = extra[0]
