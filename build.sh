@@ -5,4 +5,4 @@ pip list --outdated
 pylint *.py
 coverage run -m pytest
 coverage report -m
-docker build --tag slackbot .
+uname -n | grep -v penguin && docker build --tag slackbot .
