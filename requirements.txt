@@ -26,7 +26,7 @@ platformdirs==4.4.0
 pluggy==1.6.0
 propcache==0.3.2
 pylint==3.3.8
-pytest==8.4.1
+pytest==8.4.2
 pytz==2025.2
 setuptools==80.9.0
 slack_bolt==1.24.0
