@@ -29,7 +29,7 @@ pylint==3.3.9
 pytest==8.4.2
 pytz==2025.2
 setuptools==80.9.0
-slack_bolt==1.25.0
+slack_bolt==1.26.0
 slack_sdk==3.37.0
 tomlkit==0.13.3
 urllib3==2.5.0
