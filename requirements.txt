@@ -12,7 +12,7 @@ dill==0.4.0
 Flask==3.1.2
 frozenlist==1.8.0
 idna==3.11
-imap-tools==1.11.0
+imap-tools==1.11.1
 iniconfig==2.3.0
 isort==7.0.0
 itsdangerous==2.2.0
