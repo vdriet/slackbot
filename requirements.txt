@@ -28,7 +28,7 @@ propcache==0.4.1
 pylint==4.0.5
 pytest==9.0.2
 pytz==2026.1.post1
-requests==2.33.0
+requests==2.33.1
 setuptools==82.0.1
 slack_bolt==1.27.0
 slack_sdk==3.41.0
