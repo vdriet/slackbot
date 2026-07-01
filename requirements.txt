@@ -30,7 +30,7 @@ pytest==9.1.1
 pytz==2026.2
 requests==2.34.2
 setuptools==82.0.1
-slack_bolt==1.28.0
+slack_bolt==1.29.0
 slack_sdk==3.43.0
 tomlkit==0.15.0
 urllib3==2.7.0
