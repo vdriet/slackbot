@@ -27,7 +27,7 @@ pluggy==1.6.0
 propcache==0.5.4
 pylint==4.0.9
 pytest==9.1.1
-pytz==2026.3.post1
+pytz==2026.4
 requests==2.34.2
 setuptools==84.0.0
 slack_bolt==1.30.0
