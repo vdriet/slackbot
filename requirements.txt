@@ -22,7 +22,7 @@ mccabe==0.7.0
 multidict==7.2.1
 packaging==26.3
 pip==26.2.2
-platformdirs==4.13.7
+platformdirs==4.14.0
 pluggy==1.7.0
 propcache==0.5.4
 pylint==4.1.3
