@@ -32,7 +32,7 @@ requests==2.34.2
 setuptools==84.2.1
 slack_bolt==1.30.0
 slack_sdk==3.48.0
-tomlkit==0.15.2
+tomlkit==0.15.3
 urllib3==2.8.0
 Werkzeug==3.1.9
 yarl==1.25.1
